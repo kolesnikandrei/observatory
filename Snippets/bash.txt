@@ -1,0 +1,6 @@
+# Deletion of required files
+find . -name "*.sh" -print0 | xargs -0 rm -rf
+
+# Moving
+ls $1 | xargs -I {} -t mv $1/{} $2/{}
+
