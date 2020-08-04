@@ -1,4 +1,4 @@
-"""task2 URL Configuration
+"""Birds_project URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.0/topics/http/urls/
@@ -14,22 +14,30 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from rest_framework import status
-from rest_framework.decorators import api_view
+from django.urls import path, include
+from rest_framework import routers
 from rest_framework.response import Response
+from rest_framework.decorators import api_view
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+]
 
 
+app_name = "birds"
 
 version_str = "Birds Service. Version 0.1"
-
 @api_view(['GET'])
 def version(request):
     if request.method == 'GET':
         return Response([version_str])
 
+
+
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('version', version)
-]
-
+    path('version', version),
+    path('api/', include('bird.urls')),
+    ]
