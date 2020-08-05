@@ -13,15 +13,22 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+import sys
+
+#sys.path.append("..")
+print(sys.path)
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
+from bird import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
+
 
 
 app_name = "birds"
@@ -32,7 +39,8 @@ def version(request):
     if request.method == 'GET':
         return Response([version_str])
 
-
+router = routers.DefaultRouter()
+router.register(r'birds', views.BirdViewSet)
 
 
 
@@ -40,4 +48,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('version', version),
     path('api/', include('bird.urls')),
+    path('', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
     ]
