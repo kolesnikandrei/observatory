@@ -9,6 +9,7 @@ def decorator(cls):
 
         # def __str__(self):
         #     return "Wrapper obj"
+
     return Wrapper
 
 
@@ -21,28 +22,3 @@ class C:
 # x = C(6, 7)
 # print(x.attr)
 
-
-def bold(func):
-    def on_call(*args):
-        return f"<b>{func(*args)}</b>"
-    return on_call
-
-
-def italic(func):
-    def on_call(*args):
-        return f"<i>{func(*args)}</i>"
-    return on_call
-
-@italic
-@bold
-def f1(): return "text"
-
-
-print(f1())
-
-
-class C1:
-    text = "text"
-
-
-print(C1.text)
