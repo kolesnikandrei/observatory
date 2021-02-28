@@ -1,0 +1,32 @@
+<h2>Todos Page</h2>
+
+<p>Count {{todos.length}}</p>
+
+{{#if todos.length}}
+    <ul>
+        {{#each todos}}
+            <li class="todo">
+                <label>
+                    <p>afdafdad{{completed}}</p>
+                    <P>asdfasd{{title}}</P>
+{{!-- 
+                    {{#if completed}}
+                        <input type="checkbox" checked>
+                        <span class="completed">{{title}}</span>
+
+                    {{else}} --}}
+                        {{!-- <input type="checkbox"></input> --}}
+                        <span>{{title}}</span>
+                        <span>{{completed}}</span>
+
+                    {{!-- {{/if}} --}}
+                {{!-- <button class='btn btn-small'>Save</button> --}}
+                </label>
+            </li>
+        {{/each}}
+    </ul>
+{{else}}
+
+<P>No todos!</P>
+
+{{/if}}
